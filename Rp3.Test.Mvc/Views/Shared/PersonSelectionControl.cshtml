@@ -1,0 +1,41 @@
+﻿@{
+    var personas= (List<Rp3.Test.Mvc.Models.PersonViewModel>)HttpContext.Current.Session["persons"];
+    ViewBag.Persons = personas;
+    if (HttpContext.Current.Session["personId"] != null) {
+        ViewBag.CurrentPerson = personas.FirstOrDefault(X => X.PersonId == (int)HttpContext.Current.Session["personId"]);
+    }
+}
+
+<script>
+    let currentController ="@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()";
+    let currentAction ="@HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString()";
+
+    function onSelectPerson() {
+        let id = $("#Personas").val();
+        window.location.replace(`@Url.Action("PersonSelected", "Person")/${id}-${currentAction}-${currentController}`);
+    }
+
+    function onUnselectPerson() {
+        window.location.replace(`@Url.Action("PersonUnselected", "Person")/${currentAction}-${currentController}`);
+    }
+</script>
+
+<div class="p-2">
+    <label><strong>Persona: </strong></label>
+    @if (ViewBag.CurrentPerson == null)
+    {
+
+        @Html.DropDownList("Personas",new SelectList(ViewBag.Persons, "PersonId", "Name"), "Seleccione una persona",
+                new { @class = "" })
+
+        <input type="button" value="Seleccionar" class="btn btn-success" onclick="onSelectPerson();" />
+
+    }
+    else
+    {
+        <i>@ViewBag.CurrentPerson.Name</i>
+        <input type="button" value="Cambiar" class="btn btn-warning" onclick="onUnselectPerson();" />
+    }
+
+
+</div>

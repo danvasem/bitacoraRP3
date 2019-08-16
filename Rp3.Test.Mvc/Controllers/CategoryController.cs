@@ -11,17 +11,7 @@ namespace Rp3.Test.Mvc.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            Rp3.Test.Proxies.Proxy proxy = new Proxies.Proxy();
-
-            List<Rp3.Test.Mvc.Models.CategoryViewModel> categories = proxy.GetCategories().
-                Select(p=> new Models.CategoryViewModel()
-                {
-                    Active = p.Active,
-                    CategoryId = p.CategoryId,
-                    Name = p.Name
-                }).ToList();
-
-            return View(categories);
+            return View(GetCategories());
         }
 
 
@@ -58,6 +48,21 @@ namespace Rp3.Test.Mvc.Controllers
                 return RedirectToAction("Index");
             else
                 return View(editModel);
+        }
+
+        public static List<Rp3.Test.Mvc.Models.CategoryViewModel> GetCategories()
+        {
+            Rp3.Test.Proxies.Proxy proxy = new Proxies.Proxy();
+
+            List<Rp3.Test.Mvc.Models.CategoryViewModel> categories = proxy.GetCategories().
+                Select(p => new Models.CategoryViewModel()
+                {
+                    Active = p.Active,
+                    CategoryId = p.CategoryId,
+                    Name = p.Name
+                }).ToList();
+
+            return categories;
         }
     }
 }

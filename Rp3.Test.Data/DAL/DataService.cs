@@ -17,8 +17,10 @@ namespace Rp3.Test.Data
         }
 
         private CategoryRepository categoryRepository;
+        private PersonRepository personRepository;
         private TransactionTypeRepository transactionTypeRepository;
         private TransactionRepository transactionRepository;
+        private BalanceRepository balanceRepository;
 
         public CategoryRepository Categories
         {
@@ -27,6 +29,16 @@ namespace Rp3.Test.Data
                 if (categoryRepository == null)
                     categoryRepository = new CategoryRepository(this.context);
                 return categoryRepository;
+            }
+        }
+
+        public PersonRepository Persons
+        {
+            get
+            {
+                if (personRepository == null)
+                    personRepository = new PersonRepository(this.context);
+                return personRepository;
             }
         }
 
@@ -47,6 +59,16 @@ namespace Rp3.Test.Data
                 if (transactionRepository == null)
                     transactionRepository = new TransactionRepository(this.context);
                 return transactionRepository;
+            }
+        }
+
+        public BalanceRepository Balances
+        {
+            get
+            {
+                if (balanceRepository == null)
+                    balanceRepository = new BalanceRepository(this.context);
+                return balanceRepository;
             }
         }
 

@@ -43,5 +43,25 @@ namespace Rp3.Test.Proxies
                 return dataObjects;
             }
         }
+
+        /// <summary>
+        /// Incorporamos el método Delete para poder eliminar las transacciones
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="uri"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        protected T HttpDelete<T>(string uri, int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = client.DeleteAsync($"{BaseAdress}{uri}"+"/"+id).Result;
+
+                response.EnsureSuccessStatusCode();
+
+                var dataObjects = response.Content.ReadAsAsync<T>().Result;
+                return dataObjects;
+            }
+        }
     }
 }

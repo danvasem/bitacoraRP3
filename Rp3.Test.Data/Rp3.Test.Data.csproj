@@ -52,11 +52,15 @@
   <ItemGroup>
     <Compile Include="DAL\Context.cs" />
     <Compile Include="DAL\DataService.cs" />
+    <Compile Include="DAL\Repositories\BalanceRepositorycs.cs" />
     <Compile Include="DAL\Repositories\CategoryRepository.cs" />
+    <Compile Include="DAL\Repositories\PersonRepository.cs" />
     <Compile Include="DAL\Repositories\Repository.cs" />
     <Compile Include="DAL\Repositories\TransactionRepository.cs" />
     <Compile Include="DAL\Repositories\TransactionTypeRepository.cs" />
+    <Compile Include="Models\Balance.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

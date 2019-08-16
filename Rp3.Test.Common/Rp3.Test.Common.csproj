@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BalanceView.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Models\TransactionView.cs" />
